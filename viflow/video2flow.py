@@ -15,7 +15,7 @@ import os.path as osp
 from glob import glob
 from collections import namedtuple
 from nutsflow import (nut_processor, nut_function, Consume, Window,
-                      PrintProgress, GroupBySorted, Timer, PrintType)
+                      PrintProgress, GroupBySorted, Timer)
 
 from viflow.utils import logger, log, load_config, to_filename
 
@@ -101,8 +101,10 @@ def CalcOpticalFlow(frames):
 
 @nut_function
 def CropCenter(frame, cfg):
-    img = frame.img
     w, h = cfg.crop_width, cfg.crop_height
+    if w <= 0 or h <= 0:
+        return frame
+    img = frame.img
     iw, ih = img.shape[1], img.shape[0]
     dw, dh = iw - w, ih - h
     if dw < 0 or dh < 0:

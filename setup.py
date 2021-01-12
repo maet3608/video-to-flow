@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import viflow
 
 setup(
-    name='viflow',
+    name=viflow.__name__,
     version=viflow.__version__,
     url='https://github.ibm.com/aur-bic/video-to-opticalflow',
     author='Stefan Maetschke',

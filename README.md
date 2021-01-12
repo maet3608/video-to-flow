@@ -51,8 +51,8 @@ Specifies input and output folders for data, and other parameters.
 - `videoext` file extension, `.npy` or `*.mp4`
 - `framereate` rate frames are extracted from input video. Ignored if
    inputs are Numpy arrays.
-- `crop_width` input is cropped to specified width.   
-- `crop_height` input is cropped to specified height.  
+- `crop_width` input is cropped to specified width (0 means no cropping).   
+- `crop_height` input is cropped to specified height (0 means no cropping).  
 - `downsample` input is down-sampled by with given factor (after cropping).
 - `view_mode` is either 'arrow' or 'colors'. 'arrows' displays
    the optical flow as a vector field, while
