@@ -36,7 +36,9 @@ Specifies input and output folders for data, and other parameters.
   "videoext": "*.npy",
   "framerate": 0.1,
   "crop_width": 640,
-  "crop_height": 1080
+  "crop_height": 1080,
+  "downsample" 1.0,
+
   "view_mode": "arrow",
   "view_pause": 0.1,
   "view_downsample": 12
@@ -51,6 +53,7 @@ Specifies input and output folders for data, and other parameters.
    inputs are Numpy arrays.
 - `crop_width` input is cropped to specified width.   
 - `crop_height` input is cropped to specified height.  
+- `downsample` input is down-sampled by with given factor (after cropping).
 - `view_mode` is either 'arrow' or 'colors'. 'arrows' displays
    the optical flow as a vector field, while
 - `view_pause` specifies the minimum waiting time after displaying

@@ -2,10 +2,13 @@
   "videodir": "../data/in",
   "outdir": "../data/out",
   "videoext": "*.mp4",
+
   "framerate": 0.1,
   "crop_width": 64,
   "crop_height": 108,
+  "downsample": 1,
+
   "view_mode": "arrow",
   "view_pause": 0.1,
-  "view_downsample": 12
+  "view_downsample": 16
 }

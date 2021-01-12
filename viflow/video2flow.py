@@ -15,7 +15,7 @@ import os.path as osp
 from glob import glob
 from collections import namedtuple
 from nutsflow import (nut_processor, nut_function, Consume, Window,
-                      PrintProgress, GroupBySorted, Timer)
+                      PrintProgress, GroupBySorted, Timer, PrintType)
 
 from viflow.utils import logger, log, load_config, to_filename
 
@@ -119,6 +119,18 @@ def ToGrayScale(frame):
 
 
 @nut_function
+def Resize(frame, cfg):
+    if cfg.downsample <= 1:
+        return frame
+    img = frame.img
+    c = max(1, cfg.downsample)
+    w = int(img.shape[1] / c)
+    h = int(img.shape[0] / c)
+    img = cv2.resize(img, (w, h), interpolation=cv2.INTER_AREA)
+    return frame._replace(img=img)
+
+
+@nut_function
 def WriteOpticalFlow(data, cfg):
     filepath, stack = data
     filename = to_filename(filepath)
@@ -135,6 +147,7 @@ def process(cfg):
     (glob(inpath) >>
      ReadInputs(cfg) >>
      CropCenter(cfg) >>
+     Resize(cfg) >>
      ToGrayScale() >>
      CalcOpticalFlow() >>
      WriteOpticalFlow(cfg) >>
